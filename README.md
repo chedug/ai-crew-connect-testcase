@@ -55,3 +55,50 @@ Start the Flask App:
 flask --app main run
 ```
 
+## Endpoints
+
+### 1. Train AI Agent (`POST /train`)
+
+Train an AI agent with role-specific examples.
+
+#### Request Body
+
+- **role** (string): The role of the agent (e.g., "Sales Manager", "Lead Generator").
+- **sample_data** (list): List of conversation examples with user inputs and agent responses.
+
+```json
+{
+    "role": "Sales Manager",
+    "sample_data": [
+        {
+            "input": "Can you provide a new pricing strategy?",
+            "output": "Certainly! Here are some ideas for the new strategy..."
+        },
+        {
+            "input": "What should be our approach for the upcoming marketing campaign?",
+            "output": "We should target potential clients in the tech sector."
+        }
+    ]
+}
+```
+
+## 2. Generate Agent Response (POST /respond)
+Generate a response from an AI agent based on a conversation dataset.
+
+Request Body
+role (string): The role of the agent (e.g., "Sales Manager", "Lead Generator").
+conversation (list): List of conversation messages with user inputs and optionally previous agent responses.
+```json
+{
+    "role": "Sales Manager",
+    "conversation": [
+        {
+            "input": "Can you provide a new pricing strategy?",
+            "output": "Certainly! Here are some ideas for the new strategy..."
+        },
+        {
+            "input": "What should be our approach for the upcoming marketing campaign?"
+        }
+    ]
+}
+```
