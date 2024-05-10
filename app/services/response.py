@@ -45,4 +45,5 @@ def get_responses():
     """Retrieve all generated responses from Firestore."""
     responses_ref = db.collection('responses')
     docs = responses_ref.stream()
-    return jsonify([Response(id=doc.id, **doc.to_dict()).dict() for doc in docs]), 200
+    responses = [{doc.id: doc.to_dict()} for doc in docs]
+    return jsonify(responses), 200
