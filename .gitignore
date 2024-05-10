@@ -1,3 +1,7 @@
 .idea
 AI_Crew_Connect_Test_Case_fnl.pdf
-Mails sample.odt
+.env
+serviceAccountKey.json
+*.pyc
+*.pyo
+__pycache__/
