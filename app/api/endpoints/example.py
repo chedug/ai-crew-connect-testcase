@@ -1,15 +1,10 @@
 from flask import jsonify, request, Blueprint
 from app.db.client import db
 
-example_blueprint = Blueprint('example', __name__)
+bp = Blueprint('example', __name__)
 
 
-@example_blueprint.route('/')
-def home():
-    return "Welcome to the Flask Firebase microservice!"
-
-
-@example_blueprint.route('/get_items', methods=['GET'])
+@bp.route('/get_items', methods=['GET'])
 def get_items():
     items_ref = db.collection('test')
     docs = items_ref.stream()
@@ -17,7 +12,7 @@ def get_items():
     return jsonify(items), 200
 
 
-@example_blueprint.route('/add_item', methods=['POST'])
+@bp.route('/add_item', methods=['POST'])
 def add_item():
     try:
         data = request.json
