@@ -4,22 +4,11 @@ from app.models.conversation import ConversationData
 from app.models.firestore_models import Response
 import openai
 import os
+from app.services.openai import query_openai
+
 
 openai.api_key = os.getenv('OPENAI_API_KEY')
 db = firestore.client()
-
-
-def query_openai(messages):
-    """Query the OpenAI API with the provided prompt."""
-    try:
-        response = openai.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=messages,
-            max_tokens=150
-        )
-        return response.choices[0].message.content
-    except Exception as e:
-        return str(e)
 
 
 def generate_response(data):
